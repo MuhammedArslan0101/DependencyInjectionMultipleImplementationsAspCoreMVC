@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DependencyInjectionMultipleImplementationsCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,10 @@ namespace DependencyInjectionMultipleImplementationsCore
          public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<CrudRepository, CrudRepositoryMongoDB>();
+            services.AddScoped<CrudRepository, CrudRepositoryMySQL>();
+            services.AddScoped<CrudRepository, CrudRepositorySqlServer>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
